@@ -3,3 +3,8 @@ git init
 git pull
 git diff / git diff branch1 branch2
 git add .
+git stash /git commit -m "this is commit"
+git log
+git push
+git branch <branchname>
+
