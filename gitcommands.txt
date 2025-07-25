@@ -1,0 +1,5 @@
+git clone
+git init
+git pull
+git diff / git diff branch1 branch2
+git add .
