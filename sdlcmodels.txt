@@ -1,0 +1,4 @@
+waterfall model 
+vee model
+spiral model
+agile model
