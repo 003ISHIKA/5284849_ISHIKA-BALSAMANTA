@@ -1,6 +1,8 @@
 # 5284849\_ISHIKA-BALSAMANTA
 
-\# Week 1: SDLC \& Agile for Beginners
+
+
+\### Week 1 - Agile for Beginners
 
 
 
@@ -8,11 +10,9 @@
 
 
 
-\# Week 2 : Git
+\### Week 2 - Git
 
 
 
 \[Git for Beginner Certificate](Week2\_Git/simplilearn\_git-training\_certificate.pdf)
-
-
 
