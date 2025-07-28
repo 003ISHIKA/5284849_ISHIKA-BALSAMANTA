@@ -2,11 +2,11 @@
 
 SDLC
 
-!\[Agile Certificate](https://github.com/003ISHIKA/5284849\_ISHIKA-BALSAMANTA/raw/main/SDLC/GreatLearning\_Agile-for-Beginners.png)
+!\[Agile Certificate](https://github.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/raw/main/SDLC/GreatLearning\_Agile-for-Beginners.png)
 
 Git 
 
-!\[Git Certificate](https://github.com/003ISHIKA/5284849\_ISHIKA-BALSAMANTA/raw/main/Git/simplilearngit.png)
+!\[Git Certificate](https://github.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/raw/main/Git/simplilearngit.png)
 
 
 
