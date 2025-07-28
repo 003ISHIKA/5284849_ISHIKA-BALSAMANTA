@@ -10,6 +10,8 @@ Git
 
 !\[Git Certificate](https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Git/simplilearngit.png)
 
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Git/simplilearngit.png" width="400" alt="Git Certificate">
+
 
 
 
