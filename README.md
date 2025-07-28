@@ -2,17 +2,9 @@
 
 
 
-\### Week 1 - Agile for Beginners
+**SDLC** 
+
+!\[Agile for Beginners Certificate](https://raw.githubusercontent.com/003ISHIKA/5284849\_ISHIKA-BALSAMANTA/main/Week1\_SDLC\_Agile-for-Beginners/GreatLearning\_Agile-for-Beginners.png)
 
 
-
-!\[Agile for Beginners Certificate](Week1\_SDLC\_Agile-for-Beginners/GreatLearning\_Agile-for-Beginners.png)
-
-
-
-\### Week 2 - Git
-
-
-
-\[Git for Beginner Certificate](Week2\_Git/simplilearn\_git-training\_certificate.pdf)
 
