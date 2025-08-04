@@ -12,6 +12,11 @@ Git
 <img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Git/simplilearngit.png" width="400" alt="Git Certificate">
 
 
+C Basic sololearn
+
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cbasic.png" alt="C Basic Certificate" width="400">
+
+
 
 
 
