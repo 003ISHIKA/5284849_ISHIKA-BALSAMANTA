@@ -16,7 +16,9 @@ C Basic sololearn
 
 <img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cbasic.png" alt="C Basic Certificate" width="400">
 
+
 C intermediate sololearn
+
 <img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cintermediate.jpg" alt="C Intermediate Certificate" width="400">
 
 
