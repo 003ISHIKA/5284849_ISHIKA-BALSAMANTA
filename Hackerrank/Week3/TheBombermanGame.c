@@ -15,47 +15,64 @@ char* rtrim(char*);
 char** split_string(char*);
 
 int parse_int(char*);
-
-int* dynamicArray(int n, int queries_rows, int queries_columns, int** queries, int* result_count) {
-        
-    int** seqList = malloc(n * sizeof(int*));
-    int* sizes = calloc(n, sizeof(int));       // track size of each sequence
-    int* capacities = calloc(n, sizeof(int));  // track capacity of each sequence
-
-    int lastAnswer = 0;
-    int* results = malloc(queries_rows * sizeof(int)); // worst-case storage
-    int resCount = 0;
-
-    for (int i = 0; i < n; i++) {
-        seqList[i] = NULL;  // initially empty
-        sizes[i] = 0;
-        capacities[i] = 0;
+char** fullGrid(int r, int c, int* result_count) {
+    *result_count = r;
+    char** newGrid = malloc(r * sizeof(char*));
+    for (int i = 0; i < r; i++) {
+        newGrid[i] = malloc((c + 1) * sizeof(char));
+        for (int j = 0; j < c; j++) {
+            newGrid[i][j] = 'O';
+        }
+        newGrid[i][c] = '\0';
     }
+    return newGrid;
+}
 
-    for (int i = 0; i < queries_rows; i++) {
-        int type = queries[i][0];
-        int x = queries[i][1];
-        int y = queries[i][2];
-        int idx = (x ^ lastAnswer) % n;
+char** detonate(char** grid, int r, int c, int* result_count) {
+    *result_count = r;
+    char** newGrid = fullGrid(r, c, result_count);
 
-        if (type == 1) {
-            // Ensure capacity
-            if (sizes[idx] == capacities[idx]) {
-                capacities[idx] = (capacities[idx] == 0) ? 2 : capacities[idx] * 2;
-                seqList[idx] = realloc(seqList[idx], capacities[idx] * sizeof(int));
+    int dx[4] = {1, -1, 0, 0};
+    int dy[4] = {0, 0, 1, -1};
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            if (grid[i][j] == 'O') {
+                newGrid[i][j] = '.';
+                for (int k = 0; k < 4; k++) {
+                    int ni = i + dx[k];
+                    int nj = j + dy[k];
+                    if (ni >= 0 && ni < r && nj >= 0 && nj < c) {
+                        newGrid[ni][nj] = '.';
+                    }
+                }
             }
-            seqList[idx][sizes[idx]++] = y;
-        }
-        else if (type == 2) {
-            int pos = y % sizes[idx];
-            lastAnswer = seqList[idx][pos];
-            results[resCount++] = lastAnswer;
         }
     }
+    return newGrid;
+}
 
-    *result_count = resCount;
-    return results;
+char** bomberMan(int n, int grid_count, char** grid, int* result_count) {
+    int r = grid_count;
+    int c = strlen(grid[0]);
+    *result_count = r;
 
+    if (n == 1) {
+        return grid;  // return initial grid
+    }
+    if (n % 2 == 0) {
+        return fullGrid(r, c, result_count);
+    }
+
+    // First detonation
+    char** afterFirst = detonate(grid, r, c, result_count);
+    if (n % 4 == 3) {
+        return afterFirst;
+    }
+
+    // Second detonation
+    char** afterSecond = detonate(afterFirst, r, c, result_count);
+    return afterSecond;
 }
 
 int main()
@@ -64,29 +81,25 @@ int main()
 
     char** first_multiple_input = split_string(rtrim(readline()));
 
-    int n = parse_int(*(first_multiple_input + 0));
+    int r = parse_int(*(first_multiple_input + 0));
 
-    int q = parse_int(*(first_multiple_input + 1));
+    int c = parse_int(*(first_multiple_input + 1));
 
-    int** queries = malloc(q * sizeof(int*));
+    int n = parse_int(*(first_multiple_input + 2));
 
-    for (int i = 0; i < q; i++) {
-        *(queries + i) = malloc(3 * (sizeof(int)));
+    char** grid = malloc(r * sizeof(char*));
 
-        char** queries_item_temp = split_string(rtrim(readline()));
+    for (int i = 0; i < r; i++) {
+        char* grid_item = readline();
 
-        for (int j = 0; j < 3; j++) {
-            int queries_item = parse_int(*(queries_item_temp + j));
-
-            *(*(queries + i) + j) = queries_item;
-        }
+        *(grid + i) = grid_item;
     }
 
     int result_count;
-    int* result = dynamicArray(n, q, 3, queries, &result_count);
+    char** result = bomberMan(n, r, grid, &result_count);
 
     for (int i = 0; i < result_count; i++) {
-        fprintf(fptr, "%d", *(result + i));
+        fprintf(fptr, "%s", *(result + i));
 
         if (i != result_count - 1) {
             fprintf(fptr, "\n");

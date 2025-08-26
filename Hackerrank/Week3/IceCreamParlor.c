@@ -15,32 +15,89 @@ char* rtrim(char*);
 char** split_string(char*);
 
 int parse_int(char*);
-char* balancedSums(int arr_count, int* arr) {
-    long long total_sum = 0, left_sum = 0;
 
-    for (int i = 0; i < arr_count; i++) {
-        total_sum += arr[i];
+/*
+ * Complete the 'icecreamParlor' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER m
+ *  2. INTEGER_ARRAY arr
+ */
+
+/*
+ * To return the integer array from the function, you should:
+ *     - Store the size of the array to be returned in the result_count variable
+ *     - Allocate the array statically or dynamically
+ *
+ * For example,
+ * int* return_integer_array_using_static_allocation(int* result_count) {
+ *     *result_count = 5;
+ *
+ *     static int a[5] = {1, 2, 3, 4, 5};
+ *
+ *     return a;
+ * }
+ *
+ * int* return_integer_array_using_dynamic_allocation(int* result_count) {
+ *     *result_count = 5;
+ *
+ *     int *a = malloc(5 * sizeof(int));
+ *
+ *     for (int i = 0; i < 5; i++) {
+ *         *(a + i) = i + 1;
+ *     }
+ *
+ *     return a;
+ * }
+ *
+ */
+int* icecreamParlor(int m, int arr_count, int* arr, int* result_count) {
+    // Create a hash map to store the cost and its index
+    int* index_map = malloc(m * sizeof(int));
+    for (int i = 0; i < m; i++) {
+        index_map[i] = -1; // Initialize with -1 to indicate no index found
     }
 
+    // Allocate result array
+    int* result = malloc(2 * sizeof(int));
+    *result_count = 2; // We will return two indices
+
+    // Iterate through the array of costs
     for (int i = 0; i < arr_count; i++) {
-        long long right_sum = total_sum - left_sum - arr[i];
-        if (left_sum == right_sum) {
-            return "YES";  
+        int price = arr[i];
+        int complement = m - price;
+
+        // Check if the complement exists in the index_map
+        if (complement >= 0 && complement < m && index_map[complement] != -1) {
+            // Found the two flavors
+            result[0] = index_map[complement] + 1; // +1 for 1-based index
+            result[1] = i + 1; // +1 for 1-based index
+            break;
         }
-        left_sum += arr[i];
+
+        // Store the index of the current price in the index_map
+        if (price < m) {
+            index_map[price] = i;
+        }
     }
 
-    return "NO";  
-
+    // Free the index_map as it's no longer needed
+    free(index_map);
+    
+    return result;
 }
+
 
 int main()
 {
     FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-    int T = parse_int(ltrim(rtrim(readline())));
+    int t = parse_int(ltrim(rtrim(readline())));
 
-    for (int T_itr = 0; T_itr < T; T_itr++) {
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        int m = parse_int(ltrim(rtrim(readline())));
+
         int n = parse_int(ltrim(rtrim(readline())));
 
         char** arr_temp = split_string(rtrim(readline()));
@@ -53,9 +110,18 @@ int main()
             *(arr + i) = arr_item;
         }
 
-        char* result = balancedSums(n, arr);
+        int result_count;
+        int* result = icecreamParlor(m, n, arr, &result_count);
 
-        fprintf(fptr, "%s\n", result);
+        for (int i = 0; i < result_count; i++) {
+            fprintf(fptr, "%d", *(result + i));
+
+            if (i != result_count - 1) {
+                fprintf(fptr, " ");
+            }
+        }
+
+        fprintf(fptr, "\n");
     }
 
     fclose(fptr);

@@ -16,41 +16,109 @@ char** split_string(char*);
 
 int parse_int(char*);
 
-int* countingSort(int arr_count, int* arr, int* result_count) {
-    
-    *result_count = 100 ;
-    int *count = calloc(100,sizeof(int));
-    
-    for (int i = 0; i<arr_count; i++){
-        count[arr[i]]++;
+/*
+ * Complete the 'climbingLeaderboard' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY ranked
+ *  2. INTEGER_ARRAY player
+ */
+
+/*
+ * To return the integer array from the function, you should:
+ *     - Store the size of the array to be returned in the result_count variable
+ *     - Allocate the array statically or dynamically
+ *
+ * For example,
+ * int* return_integer_array_using_static_allocation(int* result_count) {
+ *     *result_count = 5;
+ *
+ *     static int a[5] = {1, 2, 3, 4, 5};
+ *
+ *     return a;
+ * }
+ *
+ * int* return_integer_array_using_dynamic_allocation(int* result_count) {
+ *     *result_count = 5;
+ *
+ *     int *a = malloc(5 * sizeof(int));
+ *
+ *     for (int i = 0; i < 5; i++) {
+ *         *(a + i) = i + 1;
+ *     }
+ *
+ *     return a;
+ * }
+ *
+ */
+int* climbingLeaderboard(int ranked_count, int* ranked, int player_count, int* player, int* result_count) {
+    int* unique = malloc(ranked_count * sizeof(int));
+    int uCount = 0;
+    unique[uCount++] = ranked[0];
+    for (int i = 1; i < ranked_count; i++) {
+        if (ranked[i] != ranked[i-1]) {
+            unique[uCount++] = ranked[i];
+        }
     }
-    return count;
+
+    // Step 2: allocate result array
+    *result_count = player_count;
+    int* result = malloc(player_count * sizeof(int));
+
+    // Step 3: assign ranks for each player score
+    int idx = uCount - 1;  // start from lowest rank
+    for (int i = 0; i < player_count; i++) {
+        int score = player[i];
+        // move up while player score >= unique[idx]
+        while (idx >= 0 && score >= unique[idx]) {
+            idx--;
+        }
+        // rank = idx+2 (since idx stopped just above player's score)
+        result[i] = idx + 2;
+    }
+
+    free(unique);
+    return result;
+
 }
 
 int main()
 {
     FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-    int n = parse_int(ltrim(rtrim(readline())));
+    int ranked_count = parse_int(ltrim(rtrim(readline())));
 
-    char** arr_temp = split_string(rtrim(readline()));
+    char** ranked_temp = split_string(rtrim(readline()));
 
-    int* arr = malloc(n * sizeof(int));
+    int* ranked = malloc(ranked_count * sizeof(int));
 
-    for (int i = 0; i < n; i++) {
-        int arr_item = parse_int(*(arr_temp + i));
+    for (int i = 0; i < ranked_count; i++) {
+        int ranked_item = parse_int(*(ranked_temp + i));
 
-        *(arr + i) = arr_item;
+        *(ranked + i) = ranked_item;
+    }
+
+    int player_count = parse_int(ltrim(rtrim(readline())));
+
+    char** player_temp = split_string(rtrim(readline()));
+
+    int* player = malloc(player_count * sizeof(int));
+
+    for (int i = 0; i < player_count; i++) {
+        int player_item = parse_int(*(player_temp + i));
+
+        *(player + i) = player_item;
     }
 
     int result_count;
-    int* result = countingSort(n, arr, &result_count);
+    int* result = climbingLeaderboard(ranked_count, ranked, player_count, player, &result_count);
 
     for (int i = 0; i < result_count; i++) {
         fprintf(fptr, "%d", *(result + i));
 
         if (i != result_count - 1) {
-            fprintf(fptr, " ");
+            fprintf(fptr, "\n");
         }
     }
 

@@ -16,51 +16,52 @@ char** split_string(char*);
 
 int parse_int(char*);
 
-/*
- * Complete the 'miniMaxSum' function below.
- *
- * The function accepts INTEGER_ARRAY arr as parameter.
- */
+void minimumBribes(int q_count, int* q) {
+     int bribes = 0;
+    bool chaotic = false;
 
-void miniMaxSum(int arr_count, int* arr) {
-   long total = 0;
-   int min = arr[0];
-   int max = arr[0];
-   
-   for (int i=0; i<arr_count; i++){
-    total += arr[i];
-    
-    if (arr[i]<min){
-        min = arr[i];
-    }
-    
-    if (arr[i]>max){
-        max = arr[i];
-    }
-   }
-   
-   long sum_max = total - min;
-   long sum_min = total - max;
-   
-   printf("%ld %ld", sum_min ,sum_max);
+    for (int i = 0; i < q_count; i++) {
+     
+        if (q[i] - (i + 1) > 2) {
+            printf("Too chaotic\n");
+            chaotic = true;
+            break;
+        }
 
+     
+        int start = (q[i] - 2 > 0) ? q[i] - 2 : 0;
+        for (int j = start; j < i; j++) {
+            if (q[j] > q[i]) {
+                bribes++;
+            }
+        }
+    }
+
+    if (!chaotic) {
+        printf("%d\n", bribes);
+    }
 
 }
 
 int main()
 {
+    int t = parse_int(ltrim(rtrim(readline())));
 
-    char** arr_temp = split_string(rtrim(readline()));
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        int n = parse_int(ltrim(rtrim(readline())));
 
-    int* arr = malloc(5 * sizeof(int));
+        char** q_temp = split_string(rtrim(readline()));
 
-    for (int i = 0; i < 5; i++) {
-        int arr_item = parse_int(*(arr_temp + i));
+        int* q = malloc(n * sizeof(int));
 
-        *(arr + i) = arr_item;
+        for (int i = 0; i < n; i++) {
+            int q_item = parse_int(*(q_temp + i));
+
+            *(q + i) = q_item;
+        }
+
+        minimumBribes(n, q);
     }
-
-    miniMaxSum(5, arr);
 
     return 0;
 }

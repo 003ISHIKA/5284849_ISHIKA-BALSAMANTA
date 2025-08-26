@@ -11,24 +11,43 @@
 
 char* readline();
 
-char* pangrams(char* s) {
-    int letters[26] = {0};
-    int i;
-    
-    for(i=0; s[i] != '\0'; i++){
-        char c = tolower(s[i]);
-        if(c>='a' && c<='z'){
-            letters[c - 'a'] = 1;        
-            }
+char* isValid(char* s) {
+    int freq[26] = {0};
+    int len = strlen(s);
+
+    for (int i = 0; i < len; i++) {
+        freq[s[i] - 'a']++;
     }
-    for(i = 0; i<26; i++){
-        if(letters[i] == 0){
-            return "not pangram";
-            
-        }
+
+    int vals[26], vcount = 0;
+    for (int i = 0; i < 26; i++) {
+        if (freq[i] > 0) vals[vcount++] = freq[i];
     }
-    
-    return "pangram";
+
+    int min = INT_MAX, max = INT_MIN;
+    for (int i = 0; i < vcount; i++) {
+        if (vals[i] < min) min = vals[i];
+        if (vals[i] > max) max = vals[i];
+    }
+
+    if (min == max) return "YES"; // all same
+
+    int minCount = 0, maxCount = 0;
+    for (int i = 0; i < vcount; i++) {
+        if (vals[i] == min) minCount++;
+        if (vals[i] == max) maxCount++;
+    }
+
+  
+    if (min == 1 && minCount == 1 && (minCount + maxCount == vcount)) {
+        return "YES";
+    }
+
+    if (max == min + 1 && maxCount == 1 && (minCount + maxCount == vcount)) {
+        return "YES";
+    }
+
+    return "NO";
 }
 
 int main()
@@ -37,7 +56,7 @@ int main()
 
     char* s = readline();
 
-    char* result = pangrams(s);
+    char* result = isValid(s);
 
     fprintf(fptr, "%s\n", result);
 
@@ -67,27 +86,22 @@ char* readline() {
         }
 
         alloc_length <<= 1;
-
         data = realloc(data, alloc_length);
 
         if (!data) {
             data = '\0';
-
             break;
         }
     }
 
     if (data[data_length - 1] == '\n') {
         data[data_length - 1] = '\0';
-
         data = realloc(data, data_length);
-
         if (!data) {
             data = '\0';
         }
     } else {
         data = realloc(data, data_length + 1);
-
         if (!data) {
             data = '\0';
         } else {
