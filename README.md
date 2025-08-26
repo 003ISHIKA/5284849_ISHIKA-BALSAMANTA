@@ -9,17 +9,17 @@ SDLC
 Git 
 
 
-<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Git/simplilearngit.png" width="400" alt="Git Certificate">
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Git/simplilearngit.png" width="500" alt="Git Certificate">
 
 
 C Basic sololearn
 
-<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cbasic.png" alt="C Basic Certificate" width="400">
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cbasic.png" alt="C Basic Certificate" width="500">
 
 
 C intermediate sololearn
 
-<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cintermediate.jpg" alt="C Intermediate Certificate" width="400">
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cintermediate.jpg" alt="C Intermediate Certificate" width="500">
 
 
 
