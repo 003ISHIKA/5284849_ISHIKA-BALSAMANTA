@@ -25,6 +25,8 @@ Project Skin Cancer Detection
 
 <img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Project/website.png" alt="Website for Detection" width="500">
 
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Project/project.png" alt="Website for Detection" width="500">
+
 
 
 
