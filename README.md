@@ -21,6 +21,13 @@ C intermediate sololearn
 
 <img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/C/Cintermediate.jpg" alt="C Intermediate Certificate" width="500">
 
+Project Skin Cancer Detection
+
+<img src="https://raw.githubusercontent.com/003ISHIKA/5284849_ISHIKA-BALSAMANTA/main/Project/website.png" alt="Website for Detection" width="500">
+
+
+
+
 
 
 
