@@ -115,12 +115,17 @@ def main():
     
     # Disclaimer
     st.markdown("""
-        <div class="warning-box">
-            <strong>⚠️ Medical Disclaimer:</strong> This is an AI-assisted tool for educational purposes only. 
-            It should NOT be used as a substitute for professional medical advice, diagnosis, or treatment. 
-            Always consult with a qualified healthcare provider for proper medical evaluation.
-        </div>
-    """, unsafe_allow_html=True)
+    ⚠️ **IMPORTANT MEDICAL DISCLAIMER**
+
+    This AI model is for **educational and demonstration purposes ONLY**.
+
+    **DO NOT use this tool for:**
+    - ❌ Actual medical diagnosis
+    - ❌ Self-diagnosis or self-treatment
+    - ❌ Delaying professional medical consultation
+
+    **ALWAYS consult a qualified healthcare provider** for proper medical evaluation, diagnosis, and treatment of any skin concerns.
+""")
     
     # Sidebar
     with st.sidebar:
